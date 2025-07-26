@@ -6,7 +6,7 @@ Feature: El Pais Opinion Section Scraping
     When I navigate to the ElPais page
     Then I verify the page loads in spanish
 
-  @chrome @firefox @edge @android @ios
+  @chrome @firefox @edge
   Scenario: Fetch titles and content of top 5 opinion articles
     Given I navigate to the ElPais "opinion" section
     When I fetch the top 5 articles

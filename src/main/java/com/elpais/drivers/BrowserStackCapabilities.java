@@ -77,7 +77,7 @@ public class BrowserStackCapabilities {
         return caps;
     }
 
-    // ✅ Optional simulated iOS (macOS Safari instead of real iPhone)
+    // Optional simulated iOS (macOS Safari instead of real iPhone)
     public static MutableCapabilities simulatedSafari() {
         MutableCapabilities caps = new MutableCapabilities();
 

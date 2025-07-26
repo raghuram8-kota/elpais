@@ -1,5 +1,6 @@
 package com.elpais.pages;
 
+import com.elpais.drivers.DriverManager;
 import com.elpais.utils.ConfigReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +13,10 @@ public class BasePage {
     protected final int DEFAULT_TIMEOUT = ConfigReader.getInt("default.timeout");
 
     public BasePage(WebDriver driver) {
-        this.driver = driver;
+        this.driver = DriverManager.getDriver();
+        if (this.driver == null) {
+            throw new RuntimeException("BasePage constructor: WebDriver is null!");
+        }
     }
 
     public WebElement waitForVisibility(By locator) {
@@ -24,7 +28,6 @@ public class BasePage {
         try {
             waitForVisibility(locator).click();
         } catch (ElementClickInterceptedException e) {
-            System.out.println("Click intercepted, attempting JavaScript click...");
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(locator));
         } catch (Exception e) {
             throw new RuntimeException("Failed to click element: " + locator, e);

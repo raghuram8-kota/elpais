@@ -30,7 +30,6 @@ public class  MainPage extends BasePage {
             WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(
                     By.id("didomi-notice-agree-button")));
             acceptButton.click();
-            System.out.println("Cookie banner accepted.");
         }catch (Exception e) {
             System.out.println("Failed to click cookie banner: " + e.getMessage());
         }

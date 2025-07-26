@@ -20,7 +20,6 @@ public class DriverManager {
                 String username = ConfigReader.get("bs.username");
                 String accessKey = ConfigReader.get("bs.accesskey");
                 String remoteURL = "https://" + username + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub";
-                System.out.println("Connecting to: " + remoteURL);
 
                 MutableCapabilities caps = switch (browser) {
                     case "chrome" -> BrowserStackCapabilities.desktopChrome();
@@ -30,10 +29,6 @@ public class DriverManager {
                     case "ios"     -> BrowserStackCapabilities.ios();
                     default -> throw new RuntimeException("Unsupported browser: " + browser);
                 };
-
-                System.out.println("Connecting to BrowserStack with:");
-                System.out.println("URL: " + remoteURL);
-                System.out.println("Caps: " + caps.toString());
 
                 driver.set(new RemoteWebDriver(new URL(remoteURL), caps));
             } else { // local
@@ -51,9 +46,7 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        WebDriver d = driver.get();
-        System.out.println("DriverManager.getDriver() returning: " + d);
-        return d;
+        return driver.get();
     }
 
     public static void quitDriver() {
