@@ -1,11 +1,7 @@
 package com.elpais.pages;
 
 import com.elpais.drivers.DriverManager;
-import com.elpais.utils.TextAnalyzer;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

@@ -1,56 +1,94 @@
 package com.elpais.drivers;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.MutableCapabilities;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BrowserStackCapabilities {
 
-    public static DesiredCapabilities desktopChrome() {
-        DesiredCapabilities caps = new DesiredCapabilities();
+    public static MutableCapabilities desktopChrome() {
+        MutableCapabilities caps = new MutableCapabilities();
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("os", "Windows");
+        bstackOptions.put("osVersion", "10");
+        bstackOptions.put("sessionName", "ElPais - Chrome");
+        bstackOptions.put("seleniumVersion", "4.21.0");
+
         caps.setCapability("browserName", "Chrome");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("os", "Windows");
-        caps.setCapability("osVersion", "10");
-        caps.setCapability("name", "Desktop Chrome Test");
+        caps.setCapability("bstack:options", bstackOptions);
         return caps;
     }
 
-    public static DesiredCapabilities desktopSafari() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "Safari");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("os", "OS X");
-        caps.setCapability("osVersion", "Monterey");
-        caps.setCapability("name", "Desktop Safari Test");
+    public static MutableCapabilities desktopFirefox() {
+        MutableCapabilities caps = new MutableCapabilities();
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("os", "Windows");
+        bstackOptions.put("osVersion", "11");
+        bstackOptions.put("sessionName", "ElPais - Firefox");
+        bstackOptions.put("seleniumVersion", "4.21.0");
+
+        caps.setCapability("browserName", "Firefox");
+        caps.setCapability("bstack:options", bstackOptions);
         return caps;
     }
 
-    public static DesiredCapabilities android() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("device", "Samsung Galaxy S22");
-        caps.setCapability("realMobile", "true");
-        caps.setCapability("os_version", "12.0");
-        caps.setCapability("name", "Android Chrome Test");
-        return caps;
-    }
+    public static MutableCapabilities edgeWindows() {
+        MutableCapabilities caps = new MutableCapabilities();
 
-    public static DesiredCapabilities ios() {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browserName", "Safari");
-        caps.setCapability("device", "iPhone 14");
-        caps.setCapability("realMobile", "true");
-        caps.setCapability("os_version", "16");
-        caps.setCapability("name", "iOS Safari Test");
-        return caps;
-    }
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("os", "Windows");
+        bstackOptions.put("osVersion", "11");
+        bstackOptions.put("sessionName", "ElPais - Edge");
+        bstackOptions.put("seleniumVersion", "4.21.0");
 
-    public static DesiredCapabilities edgeWindows() {
-        DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browserName", "Edge");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("os", "Windows");
-        caps.setCapability("osVersion", "11");
-        caps.setCapability("name", "Edge Windows Test");
+        caps.setCapability("bstack:options", bstackOptions);
+        return caps;
+    }
+
+    public static MutableCapabilities android() {
+        MutableCapabilities caps = new MutableCapabilities();
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("deviceName", "Samsung Galaxy S22");
+        bstackOptions.put("osVersion", "12.0");
+        bstackOptions.put("realMobile", "true");
+        bstackOptions.put("sessionName", "ElPais - Android");
+
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("bstack:options", bstackOptions);
+        return caps;
+    }
+
+    public static MutableCapabilities ios() {
+        MutableCapabilities caps = new MutableCapabilities();
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("deviceName", "iPhone 14");
+        bstackOptions.put("osVersion", "16");
+        bstackOptions.put("realMobile", "true");
+        bstackOptions.put("sessionName", "ElPais - iOS");
+
+        caps.setCapability("browserName", "Safari");
+        caps.setCapability("bstack:options", bstackOptions);
+        return caps;
+    }
+
+    // ✅ Optional simulated iOS (macOS Safari instead of real iPhone)
+    public static MutableCapabilities simulatedSafari() {
+        MutableCapabilities caps = new MutableCapabilities();
+
+        Map<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("os", "OS X");
+        bstackOptions.put("osVersion", "Monterey");
+        bstackOptions.put("sessionName", "ElPais - macOS Safari");
+        bstackOptions.put("seleniumVersion", "4.21.0");
+
+        caps.setCapability("browserName", "Safari");
+        caps.setCapability("bstack:options", bstackOptions);
         return caps;
     }
 }

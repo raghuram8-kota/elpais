@@ -97,6 +97,13 @@
                 <configuration>
                     <parallel>classes</parallel>
                     <threadCount>${thread.count}</threadCount>
+                    <includes>
+                    <include>**/ChromeTest.java</include>
+                    <include>**/FirefoxTest.java</include>
+                    <include>**/EdgeTest.java</include>
+                    <include>**/AndroidTest.java</include>
+                    <include>**/iOSTest.java</include> <!-- optional -->
+                    </includes>
                 </configuration>
             </plugin>
 

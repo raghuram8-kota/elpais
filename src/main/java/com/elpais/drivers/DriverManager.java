@@ -1,6 +1,7 @@
 package com.elpais.drivers;
 
 import com.elpais.utils.ConfigReader;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -19,15 +20,21 @@ public class DriverManager {
                 String username = ConfigReader.get("bs.username");
                 String accessKey = ConfigReader.get("bs.accesskey");
                 String remoteURL = "https://" + username + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub";
+                System.out.println("Connecting to: " + remoteURL);
 
-                DesiredCapabilities caps = switch (browser) {
+                MutableCapabilities caps = switch (browser) {
                     case "chrome" -> BrowserStackCapabilities.desktopChrome();
-                    case "safari" -> BrowserStackCapabilities.desktopSafari();
-                    case "edge" -> BrowserStackCapabilities.edgeWindows();
+                    case "firefox" -> BrowserStackCapabilities.desktopFirefox();
+                    case "edge"   -> BrowserStackCapabilities.edgeWindows();
                     case "android" -> BrowserStackCapabilities.android();
-                    case "ios" -> BrowserStackCapabilities.ios();
-                    default -> throw new RuntimeException("Unsupported BrowserStack browser: " + browser);
+                    case "ios"     -> BrowserStackCapabilities.ios();
+                    default -> throw new RuntimeException("Unsupported browser: " + browser);
                 };
+
+                System.out.println("Connecting to BrowserStack with:");
+                System.out.println("URL: " + remoteURL);
+                System.out.println("Caps: " + caps.toString());
+
                 driver.set(new RemoteWebDriver(new URL(remoteURL), caps));
             } else { // local
                 if (Objects.equals(browser, "chrome")) {
@@ -44,7 +51,9 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        return driver.get();
+        WebDriver d = driver.get();
+        System.out.println("DriverManager.getDriver() returning: " + d);
+        return d;
     }
 
     public static void quitDriver() {

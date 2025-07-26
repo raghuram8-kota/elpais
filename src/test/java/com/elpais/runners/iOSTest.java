@@ -7,10 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = {"com.elpais", "hooks"},
-        plugin = {"pretty", "html:target/cucumber-report.html"},
-        tags = "@chrome",
-        publish = true
+        glue = "com.elpais.stepdefs",
+        plugin = {"pretty", "html:target/chrome-report"},
+        tags = "@ios"
 )
-
-public class TestRunner {}
+public class iOSTest {
+}

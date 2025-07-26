@@ -1,10 +1,12 @@
+@run
 Feature: El Pais Opinion Section Scraping
 
+  @android @ios
   Scenario: Ensure that the website's text is displayed in Spanish
     When I navigate to the ElPais page
     Then I verify the page loads in spanish
 
-  @run
+  @chrome @firefox @edge @android @ios
   Scenario: Fetch titles and content of top 5 opinion articles
     Given I navigate to the ElPais "opinion" section
     When I fetch the top 5 articles
